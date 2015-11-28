@@ -1,11 +1,30 @@
 #include <pebble.h>
-
+#define KEY_BUTTON_SELECT 0
 int btstatus = 0;
 int counter = 0;
 
 static Window *app_main_window;
 static TextLayer *bt_output_layer;
 static TextLayer *start_output_layer;
+
+static void send(int key, int value) {
+  DictionaryIterator *iter;
+  app_message_outbox_begin(&iter);
+
+  dict_write_int(iter, key, &value, sizeof(int), true);
+
+  app_message_outbox_send();
+}
+
+static void outbox_sent_handler(DictionaryIterator *iter, void *context) {
+  text_layer_set_text(start_output_layer, "Press Select");
+}
+
+/*static void outbox_failed_handler(DictionaryIterator *iter, AppMessageResult reason, void *context) {
+  text_layer_set_text(start_output_layer, "Send failed!");
+  APP_LOG(APP_LOG_LEVEL_ERROR, "Fail reason: %d", (int)reason);
+}*/
+
 
 static void bt_handler(bool connected) {
   if (connected) {
@@ -21,11 +40,11 @@ static void bt_handler(bool connected) {
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
   if(btstatus == 1){
   if(counter == 0){
-      text_layer_set_text(start_output_layer, "Conversation Started");
+      send(KEY_BUTTON_SELECT, 0);
     counter++;
   }
   else {
-    text_layer_set_text(start_output_layer, "Conversation Ended");
+    text_layer_set_text(start_output_layer, "Conversation Started");
     counter--;
   }
   }else text_layer_set_text(start_output_layer, "Enable Bluetooth");
@@ -64,6 +83,13 @@ static void init() {
   });
   window_set_click_config_provider(app_main_window, click_config_provider);
   window_stack_push(app_main_window, true);
+
+ // Open AppMessage
+app_message_register_outbox_sent(outbox_sent_handler);
+//app_message_register_outbox_failed(outbox_failed_handler);
+app_message_open(app_message_inbox_size_maximum(), app_message_outbox_size_maximum());
+
+//app_message_open(app_message_inbox_size_maximum(), app_message_outbox_size_maximum());*/
 
 bluetooth_connection_service_subscribe(bt_handler);
 }
