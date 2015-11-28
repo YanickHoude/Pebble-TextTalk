@@ -4,14 +4,14 @@
         ""
     ],
     "companyName": "yhoude88@gmail.com",
-    "longName": "ScrollingTextApp",
+    "longName": "TalkText2",
     "projectType": "native",
     "resources": {
         "media": []
     },
     "sdkVersion": "3",
-    "shortName": "ScrollingTextApp",
-    "uuid": "52737080-0ad0-4ac1-a314-475042f63547",
+    "shortName": "TalkText2",
+    "uuid": "3483953b-ec40-4ad7-8ebe-d7415d1b1e3f",
     "versionLabel": "1.0",
     "watchapp": {
         "watchface": false

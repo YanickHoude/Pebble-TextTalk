@@ -1,18 +1,29 @@
 #include <pebble.h>
+#define KEY_BUTTON_SELECT 0
 
 int counter = 0;
 int btstatus = 0;
 
-  
 static Window *app_main_window;
 
 static TextLayer *bt_output_layer;
 static TextLayer *start_output_layer;
 
+
+static void send(int key, int value) {
+  DictionaryIterator *iter;
+  app_message_outbox_begin(&iter);
+
+  dict_write_int(iter, key, &value, sizeof(int), true);
+
+  app_message_outbox_send();
+}
+
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
   if(btstatus == 1){
   if(counter == 0){
       text_layer_set_text(start_output_layer, "Conversation Started");
+    send(KEY_BUTTON_SELECT, 0);
     counter++;
   }
   else {
