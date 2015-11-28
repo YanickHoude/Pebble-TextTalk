@@ -17,7 +17,7 @@ static void send(int key, int value) {
 }
 
 static void outbox_sent_handler(DictionaryIterator *iter, void *context) {
-  text_layer_set_text(start_output_layer, "Press Select");
+  text_layer_set_text(start_output_layer, "Conversation Started");
 }
 
 /*static void outbox_failed_handler(DictionaryIterator *iter, AppMessageResult reason, void *context) {
@@ -40,12 +40,15 @@ static void bt_handler(bool connected) {
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
   if(btstatus == 1){
   if(counter == 0){
-      send(KEY_BUTTON_SELECT, 0);
     counter++;
+    text_layer_set_text(start_output_layer, "Conversation Started");
+    send(KEY_BUTTON_SELECT, 0);
+    
   }
   else {
-    text_layer_set_text(start_output_layer, "Conversation Started");
     counter--;
+    text_layer_set_text(start_output_layer, "Conversation Ended");
+    
   }
   }else text_layer_set_text(start_output_layer, "Enable Bluetooth");
 }
