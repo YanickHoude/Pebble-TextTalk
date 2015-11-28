@@ -1,0 +1,19 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "yhoude88@gmail.com",
+    "longName": "ScrollingTextApp",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "ScrollingTextApp",
+    "uuid": "52737080-0ad0-4ac1-a314-475042f63547",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
