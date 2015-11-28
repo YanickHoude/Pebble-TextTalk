@@ -2,6 +2,7 @@
 
 int counter = 0;
 int btstatus = 0;
+
   
 static Window *app_main_window;
 
