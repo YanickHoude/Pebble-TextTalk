@@ -1,5 +1,5 @@
 #include <pebble.h>
-#define KEY_BUTTON_SELECT 0
+#define KEY_DATA 5
 
 int btstatus = 0;
 int counter = 0;
@@ -47,12 +47,6 @@ static void send(int key, int value) {
 static void outbox_sent_handler(DictionaryIterator *iter, void *context) {
   text_layer_set_text(start_output_layer, "Conversation Started");
 }
-
-/*static void outbox_failed_handler(DictionaryIterator *iter, AppMessageResult reason, void *context) {
-  text_layer_set_text(start_output_layer, "Send failed!");
-  APP_LOG(APP_LOG_LEVEL_ERROR, "Fail reason: %d", (int)reason);
-}*/
-
 
 static void bt_handler(bool connected) {
   if (connected) {
