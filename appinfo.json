@@ -4,14 +4,14 @@
         ""
     ],
     "companyName": "yhoude88@gmail.com",
-    "longName": "TextTalkStable",
+    "longName": "TextTalk",
     "projectType": "native",
     "resources": {
         "media": []
     },
     "sdkVersion": "2",
-    "shortName": "TextTalkStable",
-    "uuid": "441e3526-f4a2-4c92-ab9e-39cf33269498",
+    "shortName": "TextTalk",
+    "uuid": "7038bd5f-eb7c-4817-aece-bf6de2a6596c",
     "versionCode": 1,
     "versionLabel": "1.0",
     "watchapp": {
